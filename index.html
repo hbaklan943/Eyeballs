@@ -6,9 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script defer src="app.js"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            padding: 0;
+            margin: 0;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #eyes,
+        #eyes img {
+            position: absolute;
+        }
+    </style>
 </head>
 
 <body>
+    <main>
+        <img src="Gumball.png" id="anchor">
+        <div id="eyes">
+            <img src="Ellipse.png" class="eye" style="top: -74px; right: -159px;">
+            <img src="Ellipse.png" class="eye" style="top: -55px;right: -276px;">
+            <img src="Ellipse.png" class="eye" style="top: -21px;right: 116px;">
+            <img src="Ellipse.png" class="eye" style="top: -27px;right: 213px;">
+        </div>
+    </main>
 
 </body>
 
