@@ -1,19 +1,32 @@
 
-const anchor = document.getElementById('anchor');
-const rekt = anchor.getBoundingClientRect();
-const anchorX = rekt.left + rekt.width / 2;
-const anchorY = rekt.top + rekt.height / 2;
+const rektGumballRightEye = document.getElementById('gumballRightEye').getBoundingClientRect();
+const rektGumballLeftEye = document.getElementById('gumballLeftEye').getBoundingClientRect();
+const rektDarwinRightEye = document.getElementById('darwinRightEye').getBoundingClientRect();
+const rektDarwinLeftEye = document.getElementById('darwinLeftEye').getBoundingClientRect();
+
+const gumballAnchorX = anchorPointX(rektGumballRightEye, rektGumballLeftEye);
+const gumballAnchorY = anchorPointY(rektGumballRightEye);
+const darwinAnchorX = anchorPointX(rektDarwinRightEye, rektDarwinLeftEye);
+const darwinAnchorY = anchorPointY(rektDarwinLeftEye);
 
 document.addEventListener('mousemove', (e) => {
 
     const mouseX = e.clientX;
     const mouseY = e.clientY;
 
-    const angleDegree = angle(mouseX, mouseY, anchorX, anchorY)
+    const angleDegGumball = angle(mouseX, mouseY, gumballAnchorX, gumballAnchorY);
+    const angleDegDarwin = angle(mouseX, mouseY, darwinAnchorX, darwinAnchorY);
 
-    const eyes = document.querySelectorAll('.eye')
-    eyes.forEach(eye => {
-        eye.style.transform = `rotate(${-90 + angleDegree}deg)`;
+    console.log(angleDegDarwin, angleDegGumball);
+
+    const gumballEyes = document.querySelectorAll('.gumball')
+    gumballEyes.forEach(eye => {
+        eye.style.transform = `rotate(${-90 + angleDegGumball}deg)`;
+    })
+
+    const darwinEyes = document.querySelectorAll('.darwin')
+    darwinEyes.forEach(eye => {
+        eye.style.transform = `rotate(${-90 + angleDegDarwin}deg)`;
     })
 
 })
@@ -25,4 +38,14 @@ function angle(cx, cy, ex, ey) {
     const deg = rad * 180 / Math.PI;
 
     return deg;
+}
+
+function anchorPointX(rektRight, rektLeft) {
+    let anchorX = (rektRight.left + rektLeft.right) / 2;
+    return anchorX;
+}
+
+function anchorPointY(rektLeft) {
+    let anchorY = (rektLeft.top + rektLeft.bottom) / 2;
+    return anchorY;
 }
